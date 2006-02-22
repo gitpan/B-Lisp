@@ -1,10 +1,10 @@
 package B::Lisp::_impl;
 
+use 5.006;
 use strict;
 use warnings;
 use B qw( class OPf_WANT_VOID OPf_WANT_SCALAR OPf_WANT_LIST );
 use base 'B::OP';
-use Carp qw( croak );
 use Data::Dump::Streamer ();
 
 =head1 METHODS

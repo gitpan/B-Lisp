@@ -1,5 +1,6 @@
 package B::Lisp;
 
+use 5.006;
 use strict;
 use warnings;
 
@@ -9,23 +10,23 @@ B::Lisp - Perl code stringifies as lisp.
 
 =head1 VERSION
 
-Version 0.02
+Version 0.03
 
 =cut
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 =head1 SYNOPSIS
 
- perl -MO=Lispy yourprogram.pl
+ perl -MO=Lisp yourprogram.pl
 
  use B qw( svref_2object );
- use B::Lispy;
- print svref_2object( \ &foo )->ROOT;
+ use B::Lisp;
+ print svref_2object( \ &foo )->ROOT->lispy;
 
 =head1 EXPORT
 
-Optionally, lispy() is exported.
+Optionally, C<lispy( $op )> is exported.
 
 =cut
 
@@ -36,7 +37,7 @@ use Exporter;
 
 =over
 
-=item lispy( $op )
+=item $str = lispy( $op )
 
 Returns a lispy representation of an opcode.
 
@@ -44,7 +45,6 @@ Returns a lispy representation of an opcode.
 
 use B qw( main_root class );
 use B::Lisp::_impl;
-use Carp 'croak';
 
 sub B::OP::lispy {
     my $self = shift;

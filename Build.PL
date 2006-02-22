@@ -1,10 +1,13 @@
-use 5.6.0;
+use 5.006;
 use Module::Build;
 
 Module::Build->new(
-    module_name    => 'B::Lisp',
-    license        => 'perl',
-    requires       => { perl => '5.6.0', },
+    module_name => 'B::Lisp',
+    license     => 'perl',
+    requires    => {
+        perl                   => '5.6.0',
+        'Data::Dump::Streamer' => 0,
+    },
     build_requires => { 'Test::More' => 0 },
 
     # There is no 'skip' value yet.
