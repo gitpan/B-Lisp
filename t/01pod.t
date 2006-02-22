@@ -1,4 +1,10 @@
+#!perl
+
 use Test::More;
-eval "use Test::Pod";
-plan( skip_all => "Test::Pod required for testing POD" ) if $@;
+
+unless ( eval 'use Test::Pod 1.14; 1' ) {
+    plan( skip_all => "Missing Test::Pod 1.14" );
+    exit;
+}
+
 all_pod_files_ok();

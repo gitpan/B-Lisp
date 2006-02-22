@@ -1,5 +1,0 @@
-use B 'svref_2object';
-
-for ( !!0, !!1, undef ) {
-  print svref_2object( \ $_ ) . "\n";
-}

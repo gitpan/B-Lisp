@@ -1,9 +1,11 @@
+#!perl
+
 use Test::More;
-eval "use Test::Signature;";
-if ($@) {
-    plan( skip_all => "Test::Signature wasn't installed" );
+
+unless ( eval 'use Test::Signature; 1' ) {
+    plan( skip_all => "Missing Test::Signature" );
+    exit;
 }
-else {
-    plan( tests => 1 );
-    signature_ok();
-}
+
+plan( tests => 1 );
+signature_ok();

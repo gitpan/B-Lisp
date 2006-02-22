@@ -1,0 +1,43 @@
+#!perl
+
+use B 'svref_2object';
+use B::Lisp;
+
+die unless B::Lisp->can('lispy');
+
+print svref_2object(
+    sub {
+        local $\ = "\n";
+        local $, = defined $, ? $, : '';
+        print;
+    }
+    )->ROOT
+
+# Raw output
+# (leavesub :private-flags (refcounted) (lineseq (nextstate :file "eg/blotto" :package "main") (sassign (const) (null (gvsv))) (nextstate :file "eg/blotto" :package "main") (sassign (null (cond_expr (defined (null (gvsv))) (null (gvsv)) (const))) (null (gvsv))) (nextstate :file "eg/blotto" :package "main") (print (pushmark) (null (gvsv)))))
+
+    # Passing this through (pp '...) for readability
+    # (leavesub
+    #  (lineseq
+    #   (nextstate :file "eg/blotto" :package "main")
+    #   (sassign
+    #    (const)
+    #    (null
+    #     (gvsv)))
+    #   (nextstate :file "eg/blotto" :package "main")
+    #   (sassign
+    #    (null
+    #     (cond_expr
+    #      (defined
+    #        (null
+    # 	(gvsv)))
+    #      (null
+    #       (gvsv))
+    #      (const)))
+    #    (null
+    #     (gvsv)))
+    #   (nextstate :file "eg/blotto" :package "main")
+    #   (print
+    #    (pushmark)
+    #    (null
+    #     (gvsv)))))
